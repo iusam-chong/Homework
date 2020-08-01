@@ -30,7 +30,7 @@ html, body, section, .page {
   transition: all 1s cubic-bezier(.5, -0.005, 0.2, 1) !important;
   -webkit-transition: all 1s cubic-bezier(.5, -0.005, 0.2, 1) !important;
   color: #fff;
-  background-image: url(../img/home-bg.png);
+  background-image: url(../img/home-bg-new.png);
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
@@ -46,21 +46,21 @@ section {
 
 #p1 {
   left: 0;
-  background-image: url(../img/home-bg.png);
+  background-image: url(../img/home-bg-new.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #p2 {
   left: 100%;
-  background-image: url(../img/about-bg.png);
+  background-image: url(../img/about-bg-new-true.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #p3 {
   left: 200%;
-  background-image: url(../img/gallery-bg.png);
+  background-image: url(../img/gallery-bg-new-true.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -131,14 +131,14 @@ ul .icon:hover {
 }
 
 #t2:target #dos {
-	color: #9f7f5f;
+	color: #fa94d3;
 	-moz-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
 	-webkit-transition: all 0.2s linear;
 }
 
 #t3:target #tres {
-	color: #8aaa75;
+	color: #c7fdae;
 	-moz-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
 	-webkit-transition: all 0.2s linear;
@@ -250,20 +250,23 @@ a {
 	font-family: 'Montserrat', sans-serif;
 	display: inline-block;
 	padding: 15px 25px;
-	background-color: #63adcc;
+	border: 1px solid rgb(160, 255, 96);
 	color: #fff;
-	font-size: 11px;
+	font-size: 13px;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 0.5px;
 	border-radius: 25px;
-	border: 1px solid transparent;
+	/* border: 1px solid transparent; */
 	text-decoration: none;
 }
 
 .primary-button a:hover {
 	background-color: transparent;
-	border: 1px solid #fff;
+  border: 1px solid rgb(0, 238, 255);
+  color: #fff;
+  box-shadow: 0 0 10px rgb(0, 238, 255),0 0 20px rgb(0, 238, 255);
+  transition: 0.5s;
 }
 
 
@@ -294,6 +297,10 @@ a {
 
 
 #p2 .left-text {
+	text-align: left;
+}
+
+#p3 .left-text {
 	text-align: left;
 }
 
@@ -517,8 +524,8 @@ a {
 	#p2 .left-text {
 		text-align: center;
 		margin-bottom: 45px;
-	}
-
+  }
+  
 	#p2 .right-image {
 		margin-bottom: 40px;
 	}
@@ -791,4 +798,12 @@ body.lb-disable-scrolling {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+
+a {
+  color: rgb(160, 255, 96);
+}
+
+a:hover {
+  color: rgb(0, 238, 255);
 }
