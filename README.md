@@ -1,8 +1,1 @@
-# Homework
-
-## Assignment-0807 week 2
-mysql assignment
-
-## Assignment-0729 week 1 
-use bootstrap template to build a website 
-template used : 2090_kinetic 
+所有課堂作業會放在此資料夾中
