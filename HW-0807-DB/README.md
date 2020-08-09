@@ -1,5 +1,5 @@
 # 0807Homework - CyDinBenDong Database
->[name=Sam_Chong] [time=Sun, Aug 9]
+>Sam_Chong Sun, Aug 9
 >
 ### :rocket: 資料庫環境
 
