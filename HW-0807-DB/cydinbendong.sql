@@ -11,9 +11,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-create database cydinbendong2 default character set utf8;
+create database cydinbendong default character set utf8;
 
-use cydinbendong2;
+use cydinbendong;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,7 @@ use cydinbendong2;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `cydinbendong`
+-- 資料庫： `cydinbendong2`
 --
 
 -- --------------------------------------------------------
@@ -39,6 +39,7 @@ CREATE TABLE `category` (
 -- 傾印資料表的資料 `category`
 --
 
+LOCK TABLES `category` WRITE;
 INSERT INTO `category` (`CategoryID`, `CategoryName`) VALUES
 (1, '便當'),
 (2, '粥'),
@@ -48,6 +49,7 @@ INSERT INTO `category` (`CategoryID`, `CategoryName`) VALUES
 (6, '西式料理'),
 (7, '飲料'),
 (8, '快餐');
+UNLOCK TABLES;
 
 -- --------------------------------------------------------
 
@@ -72,6 +74,7 @@ CREATE TABLE `employees` (
 -- 傾印資料表的資料 `employees`
 --
 
+LOCK TABLES `employees` WRITE;
 INSERT INTO `employees` (`EmployeeID`, `LastName`, `FirstName`, `BirthDate`, `HireDate`, `Address`, `City`, `PostalCode`, `Country`, `Phone`) VALUES
 (1, '一旦', '朱', '1969-08-07', '1988-12-24', '西嶼鄉北安三街九段484巷271弄688號27樓', '澎湖縣', '991', '台灣', '0942-641-604'),
 (2, '熊', '筱', '1973-12-30', '2001-07-01', '鶯歌區文萊街三段389巷68弄175號23樓', '新北市', '905', '台灣', '0971-892-795'),
@@ -85,6 +88,7 @@ INSERT INTO `employees` (`EmployeeID`, `LastName`, `FirstName`, `BirthDate`, `Hi
 (10, '詩蓉', '姬', '1989-04-27', '2007-06-07', '復興區親民街939巷490弄655號10樓', '桃園市', '434-78', '台灣', '0962-239-694'),
 (11, '瑋翰', '何', '1955-12-31', '1995-01-01', '香山區永安東路721號82樓', '新竹市', '167-06', '台灣', '0958-588-957'),
 (12, '思芳', '水', '1984-08-22', '2004-02-29', '北區勢林街馨園一巷街六段612號64樓', '新竹市', '945', '台灣', '0923695520');
+UNLOCK TABLES;
 
 -- --------------------------------------------------------
 
@@ -106,6 +110,7 @@ CREATE TABLE `orderdetails` (
 -- 傾印資料表的資料 `orderdetails`
 --
 
+LOCK TABLES `orderdetails` WRITE;
 INSERT INTO `orderdetails` (`OrderDetailsID`, `OrderID`, `ProductID`, `UnitPrice`, `Quantity`, `Discount`, `Remark`) VALUES
 (1, 1, 7, '4.5000', 160, NULL, NULL),
 (2, 1, 6, '35.0000', 4, NULL, NULL),
@@ -120,6 +125,7 @@ INSERT INTO `orderdetails` (`OrderDetailsID`, `OrderID`, `ProductID`, `UnitPrice
 (11, 6, 11, '49.0000', 10, NULL, NULL),
 (12, 6, 1, '85.0000', 4, NULL, NULL),
 (13, 6, 2, '69.0000', 7, NULL, NULL);
+UNLOCK TABLES;
 
 -- --------------------------------------------------------
 
@@ -139,6 +145,7 @@ CREATE TABLE `orders` (
 -- 傾印資料表的資料 `orders`
 --
 
+LOCK TABLES `orders` WRITE;
 INSERT INTO `orders` (`OrderID`, `EmployeeID`, `SupplierID`, `OrderDate`, `RequiredDate`) VALUES
 (1, 1, 3, '2020-07-22 17:18:11', '2020-07-23 12:00:00'),
 (2, 4, 2, '2020-07-23 19:01:19', '2020-07-24 12:00:00'),
@@ -146,6 +153,7 @@ INSERT INTO `orders` (`OrderID`, `EmployeeID`, `SupplierID`, `OrderDate`, `Requi
 (4, 6, 1, '2020-07-31 18:52:51', '2020-08-03 12:00:00'),
 (5, 9, 4, '2020-08-05 19:24:19', '2020-08-06 12:00:00'),
 (6, 12, 1, '2020-08-10 17:34:14', '2020-08-11 12:00:00');
+UNLOCK TABLES;
 
 -- --------------------------------------------------------
 
@@ -166,6 +174,7 @@ CREATE TABLE `products` (
 -- 傾印資料表的資料 `products`
 --
 
+LOCK TABLES `products` WRITE;
 INSERT INTO `products` (`ProductID`, `ProductName`, `SupplierID`, `CategoryID`, `KindPerUnit`, `Unitprice`) VALUES
 (1, '勁辣鷄腿堡', 1, 8, NULL, '85.0000'),
 (2, '麥香魚', 1, 8, NULL, '69.0000'),
@@ -178,6 +187,7 @@ INSERT INTO `products` (`ProductID`, `ProductName`, `SupplierID`, `CategoryID`, 
 (9, 'TP餅', 4, 5, '3入', '60.0000'),
 (10, '皮蛋瘦肉粥', 5, 2, NULL, '75.0000'),
 (11, '可樂(中杯)', 1, 7, NULL, '49.0000');
+UNLOCK TABLES;
 
 -- --------------------------------------------------------
 
@@ -200,12 +210,14 @@ CREATE TABLE `suppliers` (
 -- 傾印資料表的資料 `suppliers`
 --
 
+LOCK TABLES `suppliers` WRITE;
 INSERT INTO `suppliers` (`SupplierID`, `CompanyName`, `ContactName`, `ContactTitle`, `Address`, `City`, `PostalCode`, `Phone`) VALUES
 (1, '麥當勞 文心二店', NULL, NULL, '文心路二段57號', '台中', NULL, '0422580809'),
 (2, '吉野烤肉飯', '吉永', NULL, '西屯區文華路123巷7號', '台中', NULL, '0427071725'),
 (3, '八方雲集 台中逢明點', '阿梅', NULL, '西屯區黎明路三段196號', '台中', '407', '0424528589'),
 (4, '茶湯會 朝富店', '龍子', NULL, '西屯區朝負路40號', '台中', '407', '0422540381'),
 (5, '廣味珍', NULL, NULL, '西屯區福星路328號', NULL, NULL, '0427027716');
+UNLOCK TABLES;
 
 --
 -- 已傾印資料表的索引
