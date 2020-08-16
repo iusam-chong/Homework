@@ -36,6 +36,8 @@ npm install mysql
 ---
 #### 效果預覽
 
+>GIF傷眼抱歉
+
 Server端監聽與Client端請求
 
 ![](https://i.imgur.com/gbxPENY.gif)
@@ -48,7 +50,7 @@ ScrollBar效果
 #### 聊天室是如何修改出來的？
 首先，在課堂上的檔案原本就有server端程式在監聽，我只需要在client段新增一個不停發送請求的程式既可達到不停更新資料的效果
 
-```ajax
+```javascript=
 function getData(){
     $.ajax({
         type : "get",
@@ -64,3 +66,71 @@ function getData(){
 }
 ```
 
+然後在把元素排一排以及新增一個輸入欄位跟按鈕大致上就有一個聊天室的樣子惹
+
+```htmlembedded=
+<div class="row">
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
+        <!-- <span class="glyphicon glyphicon-pencil"></span> -->
+        <input type="text"
+        id="titleTextBox2"
+        class="form-control"
+        placeholder="偉人的話">
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <button type="button"
+                id="okButton"
+                class="btn near-moon-gradient">
+            <span class="glyphicon glyphicon-ok"></span> 送出
+        </button>
+    </div>
+</div>
+```
+
+---
+#### ScrollBar製作
+
+我製作scrollbar的方法**有點奇葩**，通常製作scrollbar是先在html裡規劃後盒子後才把div改成scrollbar，但是因為我是魔改作業的關係所以在css裡將list-group的class設一個高度上限讓他的內容物無法超出這個盒子，當內容物的高度超出盒子上限就會生成scrollbar
+
+```css
+.list-group{
+    max-height: 310px;
+    margin-bottom: 10px;
+    overflow-y: auto ;
+    -webkit-overflow-scrolling: touch;
+}
+```
+
+再來如果一個聊天室不會跟著新訊息移動，感覺不夠人性化，所以就要讓新訊息一直保持在盒子的最低端；輸入欄的上方。
+
+> element.scrollHeight // 元素的滾動最大值，也就是他能滾動的最大範圍，由上而下 0-MAX
+> element.scrollTop // 元素目前滾動在的位置，scrollbar移動就會影響它的值
+
+做法很簡單只要在client端讀取資料後讓scrollbar的顯示位置一直顯示在他的最高點就好。
+
+```javascript=
+ scrollBar.scrollTop = scrollBar.scrollHeight ;
+```
+
+但問題出現惹，這樣的話如果我想看上方的訊息時因為每次收到資料後都會把我拉到最下方位置，所以上方的做法可以更好，改成每次讀取資料後執行checkScrollBar()來判斷scrollbar當前位置是否要跟著新訊息往下
+
+> lsh 是在呼叫這個function前抓取目前ScrollBar的位置
+> distanceWithOutPx 是抓取盒子的高度
+>
+
+```javascript=
+function checkScrollBar(lsh) { //lastScrollHeight
+        
+    //console.log(lsh) ;
+    let scrollBar = document.getElementById("latestNews");
+    let distance = $(latestNews).css("max-height") ;
+
+    let distanceWithOutPx = distance.replace('px','') ;
+    //console.log(distanceWithOutPx) ;
+
+    if(scrollBar.scrollHeight > lsh && scrollBar.scrollHeight != lsh && (lsh-scrollBar.scrollTop) == distanceWithOutPx ){
+        scrollBar.scrollTop = scrollBar.scrollHeight ;
+        //console.log(scrollBar.scrollHeight - scrollBar.scrollTop) ;
+    }
+}
+```
