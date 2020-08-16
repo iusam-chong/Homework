@@ -103,8 +103,8 @@ function getData(){
 
 再來如果一個聊天室不會跟著新訊息移動，感覺不夠人性化，所以就要讓新訊息一直保持在盒子的最低端；輸入欄的上方。
 
-> element.scrollHeight // 元素的滾動最大值，也就是他能滾動的最大範圍，由上而下 0-MAX
-> element.scrollTop // 元素目前滾動在的位置，scrollbar移動就會影響它的值
+> element.scrollHeight // 元素的滾動最大值，也就是他能滾動的最大範圍，會因為資料的異動而有所變化，由上而下 0-MAX
+> element.scrollTop // 元素目前滾動在的位置，scrollbar移動它的值就會變化
 
 做法很簡單只要在client端讀取資料後讓scrollbar的顯示位置一直顯示在他的最高點就好。
 
@@ -115,8 +115,8 @@ function getData(){
 但問題出現惹，這樣的話如果我想看上方的訊息時因為每次收到資料後都會把我拉到最下方位置，所以上方的做法可以更好，改成每次讀取資料後執行checkScrollBar()來判斷scrollbar當前位置是否要跟著新訊息往下
 
 > lsh 是在呼叫這個function前抓取目前ScrollBar的位置
-> distanceWithOutPx 是抓取盒子的高度
->
+> distanceWithOutPx 是抓取盒子的高度，這個值其實一開始我們就在css設定了是310px，但因為要保持程式易維護的關係所以才弄個變數出來
+
 
 ```javascript=
 function checkScrollBar(lsh) { //lastScrollHeight
@@ -128,9 +128,20 @@ function checkScrollBar(lsh) { //lastScrollHeight
     let distanceWithOutPx = distance.replace('px','') ;
     //console.log(distanceWithOutPx) ;
 
-    if(scrollBar.scrollHeight > lsh && scrollBar.scrollHeight != lsh && (lsh-scrollBar.scrollTop) == distanceWithOutPx ){
+    if(scrollBar.scrollHeight > lsh && (lsh-scrollBar.scrollTop) == distanceWithOutPx ){
         scrollBar.scrollTop = scrollBar.scrollHeight ;
         //console.log(scrollBar.scrollHeight - scrollBar.scrollTop) ;
     }
 }
 ```
+
+以上的判斷敘述翻成中文就是達成以下兩個條件
+> 目前滾動最大值 大於 更新資料前的滾動最大值
+> 上一次滾動最大值 減 目前的滾動值 必須等於 盒子的最大值
+
+在白話一點就是既有新異動的資料進來以及現在的滾動位置必須是上一個滾動最大值的位置才會執行將滾輪拉到最低端的位置
+
+---
+#### 其它
+
+人性化設計的坑越挖就越多細節，由於時限的關係無法一直繼續製作下去，所以作業內容目前就到此結束羅，謝謝。

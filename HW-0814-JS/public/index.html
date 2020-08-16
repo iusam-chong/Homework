@@ -198,7 +198,7 @@ $(function () { // document.ready.onload
         let distanceWithOutPx = distance.replace('px','') ;
         //console.log(distanceWithOutPx) ;
 
-        if(scrollBar.scrollHeight > lsh && scrollBar.scrollHeight != lsh && (lsh-scrollBar.scrollTop) == distanceWithOutPx ){
+        if(scrollBar.scrollHeight > lsh && (lsh-scrollBar.scrollTop) == distanceWithOutPx ){ // scrollBar.scrollHeight != lsh && 
             scrollBar.scrollTop = scrollBar.scrollHeight ;
             //console.log(scrollBar.scrollHeight - scrollBar.scrollTop) ;
         }
