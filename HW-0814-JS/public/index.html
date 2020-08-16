@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery.toast.css">
+    <style>
+        .modal-header, h4, .close {
+            background-color: #5cb85c;
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .modal-footer {
+            background-color: #f9f9f9;
+        }
+
+        .btn:hover,
+        .btn:focus,
+        .btn:active,
+        .btns.active,
+        .open .dropdown-toggle.btn-success {
+            color:black;
+            background: linear-gradient(90deg, #7779fa, #8dffff) !important
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <!-- <span class="pull-right"><button id="newItem" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></span> -->
+            <h2>&nbsp;悶騷聊天室</h2>
+            <ul id="latestNews" class="list-group">
+                <li class="list-group-item">First item<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
+                <li class="list-group-item">Second item<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
+                <li class="list-group-item">Third item<span class="pull-right"><button class="btn btn-info btn-xs  editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
+            </ul>
+            <div class="row">
+                <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
+                    <!-- <span class="glyphicon glyphicon-pencil"></span> -->
+                    <input type="text"
+                    id="titleTextBox2"
+                    class="form-control"
+                    placeholder="偉人的話">
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <button type="button"
+                            id="okButton"
+                            class="btn near-moon-gradient">
+                        <span class="glyphicon glyphicon-ok"></span> 送出
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-3">
+            &nbsp;
+        </div>
+
+        
+        <div class="col-sm-3">
+            &nbsp;
+        </div>
+
+    </div>  <!-- end of row -->
+
+</div> <!-- end of container -->
+
+
+
+
+<!-- 對話盒 -->
+<div id="newsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>修改留言</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="titleTextBox">
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                            請輸入新的留言
+                        </label>
+                        <input type="text"
+                               id="titleTextBox"
+                               class="form-control"
+                               placeholder="偉人的話" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button"
+                                id="okButton2"
+                                class="btn near-moon-gradient">
+                            <span class="glyphicon glyphicon-ok"></span> 確定
+                        </button>
+                        <button type="button"
+                                id="cancelButton"
+                                class="btn peach-gradient"
+                                data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span> 取消
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /對話盒 -->
+
+
+<!-- ========== UI 與 JavaScript 分隔線 ========== -->
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.toast.js"></script>
+
+<script>
+
+// 使用方式:
+// showToast("標題", "提示文字") 例如:
+// showToast("Hint", "請點一下正確的圖案");
+function showToast(heading, message) {
+    $.toast({
+        text: message, // Text that is to be shown in the toast
+        heading: heading, // Optional heading to be shown on the toast
+        //icon: 'warning', // Type of toast icon
+        showHideTransition: 'fade', // fade, slide or plain
+        allowToastClose: true, // Boolean value true or false
+        hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+        stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+        position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+        textAlign: 'left',  // Text alignment i.e. left, right or center
+        textColor: 'black',
+        loader: true,  // Whether to show loader or not. True by default
+        loaderBg: '#d4fc79',  // Background color of the toast loader
+        bgColor:  "#ffd86f",
+        beforeShow: function () { }, // will be triggered before the toast is shown
+        afterShown: function () { }, // will be triggered after the toat has been shown
+        beforeHide: function () { }, // will be triggered before the toast gets hidden
+        afterHidden: function () { }  // will be triggered after the toast has been hidden
+    });
+}
+
+</script>
+
+
+<script>
+
+$(function () { // document.ready.onload
+
+    var newsList =
+    [
+        { ymd: "2017-05-01", title: "Item 1" },
+        { ymd: "2017-05-01", title: "Item 2" },
+        { ymd: "2017-05-02", title: "Item 3" },
+        { ymd: "2017-05-03", title: "Item 4" },
+        { ymd: "2017-05-04", title: "Item 5" }
+    ];
+    // 練習與任務:
+
+   
+    var indexFlag = -1;
+
+    // 這是讓滾輪一開始就往下滾，但是這方法不好，應該要尋求更好的方案
+    // console.log(scrollBar.scrollHeight) ;
+    var temp = setTimeout(scrollBarSetup, 500);
+    function scrollBarSetup(){
+        let scrollBar = document.getElementById("latestNews");
+        scrollBar.scrollTop = scrollBar.scrollHeight;
+        clearTimeout(temp);
+    }
+
+    // var d = new Date();
+    // console.log(d.toLocaleTimeString());
+
+    getData() ;
+
+    function checkScrollBar(lsh) { //lastScrollHeight
+        
+        //console.log(lsh) ;
+        let scrollBar = document.getElementById("latestNews");
+        let distance = $(latestNews).css("max-height") ;
+
+        let distanceWithOutPx = distance.replace('px','') ;
+        //console.log(distanceWithOutPx) ;
+
+        if(scrollBar.scrollHeight > lsh && scrollBar.scrollHeight != lsh && (lsh-scrollBar.scrollTop) == distanceWithOutPx ){
+            scrollBar.scrollTop = scrollBar.scrollHeight ;
+            //console.log(scrollBar.scrollHeight - scrollBar.scrollTop) ;
+        }
+    }
+
+    function getData(){
+        $.ajax({
+            type : "get",
+            url : "http://localhost/home/news",
+        }).then(function(e){
+            newsList =  JSON.parse(e);
+            refreshUI() ;
+        }).done(function(){
+            setTimeout(() => {
+                
+                getData();
+                
+                //console.log("OK") ;
+            }, 500);
+        })
+    }
+    
+
+
+    function refreshUI(){
+
+        let scrollBar = document.getElementById("latestNews");
+        var lastScrollHeight = scrollBar.scrollHeight ;
+
+        $("#latestNews").empty();
+
+        $.each(newsList , function(idx, news){
+            var showText = news.ymd + ' ' + news.title ;
+            
+            var li = $('<li></li>')
+                .text(showText)
+                .addClass("list-group-item borderless")
+                .append('<span class="pull-right"><button class="btn btn-xs dusty-grass-gradient editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn young-passion-gradient btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span>');
+            $("#latestNews").append(li) ;
+        })
+
+        $(".editItem").click( function(){
+            $("#newsModal").modal({backdrop : "static"});
+            var currentIndex = $(this).closest("li").index() ;
+
+            $("#titleTextBox").val(newsList[currentIndex].title);
+            indexFlag = currentIndex ;
+        })
+
+        $(".deleteItem").click( function(){
+            var currentIndex = $(this).closest("li").index() ;
+            $.ajax({
+                type : "DELETE",
+                url : "http://localhost/home/news",
+                data : newsList[currentIndex]
+            }).then( function(e) {
+                //console.log(e);
+                getData() ;
+                showToast("","Delete comment success") ;
+            })
+        })
+
+        checkScrollBar(lastScrollHeight);
+    }
+    
+    $("#newsModal").on('hidden.bs.modal',function (){
+       clearBoxVal() ;
+    })
+
+    function clearBoxVal(){
+        $("#titleTextBox2").val(null);
+        $("#ymdTextBox").val(null);
+    }
+
+    function GetCurrentTime(){
+        var d = new Date(); // for now
+        datetext = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+        datetext = d.toTimeString().split(' ')[0];
+        return datetext ;
+    }
+
+    $('#titleTextBox2').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            newData()
+        }
+    });
+
+    $("#okButton").click( function(){
+        $("#newsModal").modal("hide");
+        newData()
+    })
+
+    function newData(){
+        var dataInput = {
+        title : $("#titleTextBox2").val(),
+        ymd : GetCurrentTime() 
+        }
+        //console.log(dataInput);
+        $.ajax({
+            type : "POST",
+            url : "http://localhost/home/news",
+            contentType: "application/json",
+            data : JSON.stringify(dataInput)
+        }).then( function() {
+            getData() ;
+            clearBoxVal()
+            showToast("","Add comment success") ;
+        })
+    }
+    
+    $("#okButton2").click( function(){
+        $("#newsModal").modal("hide");
+    
+            newsList[indexFlag].title = $("#titleTextBox").val()
+            
+            $.ajax({
+                type : "PUT",
+                url : "http://localhost/home/news",
+                data : newsList[indexFlag]
+            }).then( function() {
+                getData() ;
+                clearBoxVal()
+                showToast("","Edit comment success") ;
+            })
+    })
+
+})  // end of init.
+
+</script>
+
+</body>
+</html>

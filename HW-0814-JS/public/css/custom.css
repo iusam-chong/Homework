@@ -1,0 +1,74 @@
+.btn{
+    color: ivory;
+}
+
+.list-group{
+    max-height: 310px;
+    margin-bottom: 10px;
+    overflow-y: auto ;
+    -webkit-overflow-scrolling: touch;
+}
+
+.list-group-item{
+    border: 0 none;
+}
+
+.peach-gradient {
+    border-style: none;
+    background: linear-gradient(40deg, #ffd86f, #fc6262) !important
+}
+
+.aqua-gradient {
+    border-style: none;
+    background: linear-gradient(40deg, #2096ff, #05ffa3) !important
+}
+
+.young-passion-gradient {
+    border: none;
+    background-image: -webkit-gradient(linear, left top, right top, from(#ff8177), color-stop(0%, #ff867a), color-stop(21%, #ff8c7f), color-stop(52%, #f99185), color-stop(78%, #cf556c), to(#b12a5b));
+    background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)
+}
+
+.morpheus-den-gradient {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0), to(#330867));
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%)
+}
+
+.amy-crisp-gradient {
+    background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%)
+}
+
+.tempting-azure-gradient {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)
+}
+
+.dusty-grass-gradient {
+    border: none;
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%)
+}
+
+.near-moon-gradient {
+    border: none ;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#5ee7df), to(#b490ca));
+    background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%)
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5; 
+    scrollbar-color: #b490ca #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#5ee7df), to(#b490ca));
+    background-image: -webkit-linear-gradient(bottom, #5ee7df 0%, #b490ca 100%);
+    background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%); 
+}
