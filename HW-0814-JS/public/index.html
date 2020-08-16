@@ -217,7 +217,7 @@ $(function () { // document.ready.onload
                 getData();
                 
                 //console.log("OK") ;
-            }, 500);
+            }, 750);
         })
     }
     
@@ -284,13 +284,14 @@ $(function () { // document.ready.onload
         var key = e.which;
         if(key == 13)  // the enter key code
         {
-            newData()
+            newData();
+            scrollBarSetup();
         }
     });
 
     $("#okButton").click( function(){
         $("#newsModal").modal("hide");
-        newData()
+        newData();
     })
 
     function newData(){
