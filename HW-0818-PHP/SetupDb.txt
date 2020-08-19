@@ -1,0 +1,14 @@
+CREATE DATABASE homeworkphp  DEFAULT CHARACTER SET utf8;
+
+USE homeworkphp ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+	`userId` tinyint(2) unsigned zerofill NOT NULL auto_increment,
+    `userName` varchar(16) collate utf8_unicode_ci NOT NULL,
+    `userPassword` varchar(16) collate utf8_unicode_ci NOT NULL,
+    PRIMARY KEY  (`userId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8   COLLATE=utf8_unicode_ci AUTO_INCREMENT= 11 ;
+
+INSERT INTO `user` (`userName`, `userPassword`) VALUES
+('alpha_user', 'admin'),
+('beta_user', 'admin')
