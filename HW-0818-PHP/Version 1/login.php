@@ -1,8 +1,38 @@
 <?php 
 
+// if (isset($_GET["logout"]))
+// {
+// 	setcookie("userName", "Guest", time() - 3600);
+// 	header("Location: index.php");
+// 	exit();
+// }
+
+// if (isset($_POST["btnHome"]))
+// {
+// 	header("Location: index.php");
+// 	exit();
+// }
+
+// if (isset($_POST["btnOK"]))
+// {
+// 	$sUserName = $_POST["txtUserName"];
+// 	if (trim($sUserName) != "")
+// 	{
+// 		setcookie("userName", $sUserName);
+// 		if (isset($_COOKIE["lastPage"]))
+// 		  header(sprintf("Location: %s", $_COOKIE["lastPage"]));
+// 		else
+// 		   header("Location: index.php");
+// 		exit();
+// 	}
+	
+// }
+
+session_start();
 if (isset($_GET["logout"]))
 {
-	setcookie("userName", "Guest", time() - 3600);
+  //unset($_SESSION["userName"]);
+  session_destroy();
 	header("Location: index.php");
 	exit();
 }
@@ -18,9 +48,12 @@ if (isset($_POST["btnOK"]))
 	$sUserName = $_POST["txtUserName"];
 	if (trim($sUserName) != "")
 	{
-		setcookie("userName", $sUserName);
-		if (isset($_COOKIE["lastPage"]))
-		  header(sprintf("Location: %s", $_COOKIE["lastPage"]));
+    $_SESSION["userName"] = $sUserName ;
+		if (isset($_SESSION["lastPage"])){
+      $temp = $_SESSION["lastPage"] ;
+      unset($_SESSION["lastPage"]);
+      header(sprintf("Location: %s", $temp));
+    }
 		else
 		   header("Location: index.php");
 		exit();

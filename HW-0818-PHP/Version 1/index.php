@@ -1,7 +1,13 @@
 <?php 
+/* cookie */ 
+// if (isset($_COOKIE["userName"]))
+//   $sUserName = $_COOKIE["userName"];
+// else 
+//   $sUserName = "Guest";
 
-if (isset($_COOKIE["userName"]))
-  $sUserName = $_COOKIE["userName"];
+session_start();
+if (isset($_SESSION["userName"]))
+  $sUserName = $_SESSION["userName"];
 else 
   $sUserName = "Guest";
 
