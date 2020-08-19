@@ -33,17 +33,17 @@ console.log("鍵盤「Ctrl + C」可結束伺服器程式.");
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	// mac 
-	// host : '127.0.0.1',
-	// user : 'root',
-	// password : 'root',
-	// database : 'labdb',
-	// port : "8889"
-	
-	// windows
 	host : '127.0.0.1',
 	user : 'root',
-	password : '',
-	database : 'labdb'
+	password : 'root',
+	database : 'labdb',
+	port : "8889"
+	
+	// windows
+	// host : '127.0.0.1',
+	// user : 'root',
+	// password : '',
+	// database : 'labdb'
 });
 
 connection.connect(function(err) {
