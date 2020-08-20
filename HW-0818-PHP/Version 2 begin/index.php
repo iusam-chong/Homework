@@ -4,7 +4,6 @@ session_start();
 if (isset($_SESSION["SuserName"])){
   $userName = $_SESSION["SuserName"];
   $userId = $_SESSION["SuserId"];
-  echo $userId ;
 }
 else {
   $userName = "Guest";

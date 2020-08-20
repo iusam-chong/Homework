@@ -18,29 +18,35 @@ if (isset($_POST["btnHome"]))
 if (isset($_POST["btnOK"]))
 {
   $userName = $_POST["txtUserName"];
-  $userPassowrd = $_POST["txtPassword"] ;
-	if (trim($userName) != "" && trim($userPassowrd) != "")
+  $userPassword = $_POST["txtPassword"] ;
+	if (trim($userName) != "" && trim($userPassword) != "")
 	{
-    $mysqli = new mysqli("localhost", "root", "", "homeworkphp");
+    $db = new PDO("mysql:host=localhost;dbname=homeworkphp", "root", "root");
+    
+    //$db->exec("set names utf8")
+    //$mysqli = new mysqli("localhost", "root", "root", "homeworkphp");
     // if (mysqli_connect_errno()) {
     //     printf("連接失敗： %s\n", mysqli_connect_error());
     //     exit();
     // }
-
- 
-    $mysqli->query("SET NAMES 'utf8'");
-    $resultset = $mysqli->query("SELECT * FROM user WHERE userName = '$userName' AND userPassword='$userPassowrd'");
     
-    $row = $resultset->fetch_assoc() ;
+    //$mysqli->query("SET NAMES 'utf8'");
+    $cmd = $db->prepare("SELECT userId, userName, userPassword FROM user WHERE userName = :uN AND userPassword= :uP"); //lock IN share mode
+    $cmd->bindValue(":uN", $userName);
+    $cmd->bindValue(":uP", $userPassword);
+
+    $cmd->execute();
+    
+    $row = $cmd->fetch();
+    //print_r($row);
     if($row) {
        
       // Set Session
       $_SESSION["SuserId"] = $row['userId'] ;
-      $_SESSION["SuserName"] = $userName ;
+      $_SESSION["SuserName"] = $row['userName'] ;
 
       // close sql
-      $resultset->close();
-      $mysqli->close();
+      $db = null;
 
       if (isset($_SESSION["lastPage"])){
         $temp = $_SESSION["lastPage"] ;
