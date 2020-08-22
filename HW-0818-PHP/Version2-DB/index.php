@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+// 大致上跟version1差不多,只是多了userId這個變數
 if (isset($_SESSION["SuserName"])){
   $userName = $_SESSION["SuserName"];
   $userId = $_SESSION["SuserId"];
@@ -10,7 +11,6 @@ else {
   $userId = "";
 }
   
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
