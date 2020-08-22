@@ -46,6 +46,5 @@ $sUserName = (isset($_SESSION["userName"])) ? $_SESSION["userName"] : "Guest" ;
   </tr>
 </table>
 
-
 </body>
 </html>
