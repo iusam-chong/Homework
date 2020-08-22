@@ -1,5 +1,5 @@
 <?php 
-
+// 匯入php檔案
 require_once('configdb.php') ;
 
 session_start();
