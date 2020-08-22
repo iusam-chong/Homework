@@ -9,12 +9,12 @@
 // }
 
 session_start() ;
+// 如果SESSION中沒有useName轉到login.php
 if (!isset($_SESSION["userName"]))
 {
   $_SESSION["lastPage"] = "secret.php" ;
 	header("Location: login.php");
 	exit();
-	
 }
 
 ?>

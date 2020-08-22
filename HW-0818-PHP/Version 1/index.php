@@ -1,15 +1,21 @@
 <?php 
-/* cookie */ 
+/* cookie 寫法 */ 
 // if (isset($_COOKIE["userName"]))
 //   $sUserName = $_COOKIE["userName"];
 // else 
 //   $sUserName = "Guest";
 
-session_start();
-if (isset($_SESSION["userName"]))
-  $sUserName = $_SESSION["userName"];
-else 
-  $sUserName = "Guest";
+// SESSION開始
+session_start() ;
+
+// 檢查SEESION中是否存在userName,若有該變數($sUserName)等於用戶(userName)否則等於訪客(Guest)
+$sUserName = (isset($_SESSION["userName"])) ? $_SESSION["userName"] : "Guest" ;
+
+/* 上面那串程式等於下面註解的這段 */
+// if (isset($_SESSION["userName"]))
+//   $sUserName = $_SESSION["userName"] ;
+// else 
+//   $sUserName = "Guest" ;
 
 ?>
 
