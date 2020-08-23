@@ -5,10 +5,14 @@ USE homeworkphp ;
 CREATE TABLE IF NOT EXISTS `user` (
 	`userId` tinyint(2) unsigned zerofill NOT NULL auto_increment,
     `userName` varchar(16) collate utf8_unicode_ci NOT NULL,
-    `userPassword` varchar(16) collate utf8_unicode_ci NOT NULL,
+    `userPassword` varchar(64) collate utf8_unicode_ci NOT NULL,
     PRIMARY KEY  (`userId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8   COLLATE=utf8_unicode_ci AUTO_INCREMENT= 11 ;
 
 INSERT INTO `user` (`userName`, `userPassword`) VALUES
-('alpha_user', 'admin'),
-('beta_user', 'admin')
+('alpha', '8ed3f6ad685b959ead7022518e1af76cd816f8e8ec7ccdda1ed4018e8f2223f8'),
+('beta', 'f44e64e75f3948e9f73f8dfa94721c4ce8cbb4f265c4790c702b2d41cfbf2753')
+
+/*
+作業用為了方便userName=userPassword
+*/
