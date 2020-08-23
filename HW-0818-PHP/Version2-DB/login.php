@@ -30,6 +30,9 @@ if (isset($_POST["btnOK"]))
     exit() ;
   }
 
+  // SHA256 雜湊
+  $userPassword = hash('sha256', $userPassword) ;
+
   // 呼叫function新增資料庫連線
   $db = setupDb() ;
   // 準備資料庫指令, 用bindValue()將值放進去
