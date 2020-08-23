@@ -1,8 +1,8 @@
 # Version2 - Login with Database
 
 ####  :pushpin: 主要目標與功能
-> 能使用資料庫登入
-> 修改login.php登入失敗後顯示訊息
+> 能使用資料庫登入 <br>
+> 修改login.php登入失敗後顯示訊息 <br>
 > 添加hash,對密碼進行雜湊
 
 ## 程式碼
@@ -24,5 +24,4 @@
 ![](https://i.imgur.com/hgtlBn3.png)
 
 ---
-
 [:end:BACK TO ROOT](https://https://github.com/iusam-chong/Homework/tree/master/HW-0818-PHP)
