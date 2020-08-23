@@ -3,7 +3,6 @@
 ####  :pushpin: 主要目標與功能
 > 達成作業基本功能，將cookie寫法轉換成session寫法
 
-
 ## 程式碼
 
 ### index.php
