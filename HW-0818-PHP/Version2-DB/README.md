@@ -16,7 +16,6 @@
 ### 在呼叫資料庫前添加hash
 ![](https://i.imgur.com/i7IPDuP.png)
 
-
 ## 程式流程圖
 ![](https://i.imgur.com/m5Ny0ga.png)
 
